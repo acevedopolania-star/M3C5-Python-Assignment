@@ -113,3 +113,113 @@ def loop_over_range():
     # Write your code here
     for number in range(1, 11):
         print(number)
+
+# --- Loop Control Flow: Continue and Break ---
+
+usernames = ['jon', 'tyrion', 'theon', 'cersei', 'sansa']
+
+# 1. Example of CONTINUE
+# It skips 'cersei' but keeps going with 'sansa'
+print("\n--- Testing CONTINUE ---")
+for username in usernames:
+    if username == 'cersei':
+        print(f"Sorry {username}, you are not allowed")
+        continue
+    print(f"{username} is allowed")
+
+# 2. Example of BREAK
+# It stops the entire loop once it finds 'cersei'
+print("\n--- Testing BREAK ---")
+for username in usernames:
+    if username == 'cersei':
+        idx = usernames.index(username)
+        print(f"{username} was found at index {idx}. Stopping search.")
+        break
+    print(f"Checking: {username}")
+
+# Note: Use 'break' to optimize performance when searching 
+# through large datasets.
+
+# 3. Coding Excersice
+def loop_and_break():
+    vegetables = ["onion", "broccoli", "apple", "spinach"]
+    
+    for veg in vegetables:
+        if veg == 'apple':
+            print(f'apple is not a vegetable')
+            break
+        print(veg)
+
+
+# --- While Loops & Iterator (Sentinel) Values ---
+
+# 1. Basic while loop using list length as sentinel
+# We create a list from 1 to 99
+numbers_list = list(range(1, 100))
+
+print("\n--- Popping elements with while ---")
+while len(numbers_list) > 0: #len comes from length, it counts the number of elements 
+    # .pop() removes and returns the last element, decreasing the list length
+    print(f"Removing: {numbers_list.pop()}")
+
+# 2. Infinite-style while loop for a game
+# This continues until the user provides the correct answer (the sentinel event)
+def guessing_game():
+    while True:
+        print('What is your guess?')
+        # input() pauses the program and waits for user text in the terminal
+        guess = input()
+
+        if guess == '42':
+            print('You correctly guessed it!')
+            # 'return False' or 'break' exits the loop and the function
+            return False
+        else:
+            print(f"No, {guess} isn't the answer, please try again\n")
+
+# To test the game, uncomment the line below:
+# guessing_game()
+
+#3. Coding Exercise
+
+def loop_using_while():
+    dog_house = ['Bobby', 'Teddy', 'Max', 'Clifford']
+    
+    counter = 0
+    
+    while counter < len(dog_house):
+        print(dog_house[counter])
+        counter += 1
+    
+    return [dog_house, counter]
+
+# --- Merging and Flattening Lists with For Loops ---
+# Combining elements from two different lists into one flat list.
+
+legacy_customers = ['Alice', 'Bob']
+new_customers = ['Tiffany', 'Kristine']
+
+# WRONG WAY: This creates a nested list (a list of lists)
+# raw_db = [legacy_customers, new_customers] 
+
+# CORRECT WAY: Iterating and appending
+# We take each individual customer from the legacy list...
+for legacy_customer in legacy_customers:
+    # ...and add them one by one to the new list
+    new_customers.append(legacy_customer)
+
+print("\n--- Combined Customer List ---")
+print(new_customers)
+# Output: ['Tiffany', 'Kristine', 'Alice', 'Bob']
+
+# --- Practical Loop Exercise ---
+# Correct alignment (Indentation)
+numbers = [1, 2, 3, 4, 5]
+result = []
+
+for number in numbers:
+    incremented_number = number + 1
+    # Adding to the list MUST be inside the loop to catch every number
+    result.append(incremented_number) 
+
+print(f"Final result list: {result}")
