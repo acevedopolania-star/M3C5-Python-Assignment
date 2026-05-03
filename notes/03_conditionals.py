@@ -122,3 +122,27 @@ if user_to_check in authorized_users:
     print(f"Access Granted for {user_to_check}!")
 else:
     print("Access Denied.")
+
+
+# --- Compound Conditionals (and, or, not) ---
+
+username = 'jonsnow'
+email = 'jon@snow.com'
+password = 'thenorth'
+
+# 1. Using 'and' (Strict)
+if username == 'jonsnow' and password == 'thenorth':
+    print("Login successful!")
+
+# 2. Using 'or' with parenthesis (Flexible login)
+# This allows either username OR email, but ALWAYS requires the password
+if (username == 'jonsnow' or email == 'jon@snow.com') and password == 'thenorth':
+    print("Access permitted via username or email.")
+
+# 3. Using 'not' (The inverter)
+is_admin = False
+is_logged_in = True
+
+# Logical check: Is the user logged in AND NOT an admin?
+if is_logged_in and not is_admin:
+    print("Welcome, standard user. You cannot see the admin panel.")
