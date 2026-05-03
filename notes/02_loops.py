@@ -242,3 +242,35 @@ print(f"Even numbers (List Comp): {even_numbers}")
 
 # Note: List comprehensions are great for simple operations, 
 # but for complex logic, a traditional for loop is often more readable.
+
+
+# --- Removing First and Last Elements ---
+
+def remove_first_and_last(list_to_clean):
+    # Destructuring:
+    # The underscores (_) are for elements we want to ignore
+    # The asterisk (*) globs all elements in the middle into 'content'
+    _, *content, _ = list_to_clean
+    return content
+
+# Test Cases
+html = ['<h1>', 'Some content', '</h1>']
+html_2 = ['<h1>', 'Some content', 'More content', '</h1>']
+
+print(f"Cleaned 1: {remove_first_and_last(html)}")
+# Output: ['Some content']
+
+print(f"Cleaned 2: {remove_first_and_last(html_2)}")
+# Output: ['Some content', 'More content']
+
+# --- Pythonic way to slice a list ---
+def remove_first_and_last(list_to_clean):
+    # Using '_' is a convention for variables we plan to throw away
+    _, *content, _ = list_to_clean
+    return content
+
+html = ['<h1>', 'My content', '</h1>']
+print(remove_first_and_last(html))
+
+other_content_to_clean = ['', 'My content', 'Something else', '/']
+print(remove_first_and_last(other_content_to_clean))
