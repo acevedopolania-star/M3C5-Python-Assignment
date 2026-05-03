@@ -223,3 +223,22 @@ for number in numbers:
     result.append(incremented_number) 
 
 print(f"Final result list: {result}")
+
+
+# --- List Comprehensions ---
+# Advanced one-line loops to generate lists.
+
+num_list = range(1, 11)
+
+# Example 1: Cubing numbers
+# Structure: [expression for item in list]
+cubed_nums = [num ** 3 for num in num_list]
+print(f"\nCubed numbers (List Comp): {cubed_nums}")
+
+# Example 2: Filtering even numbers (With a conditional)
+# Structure: [expression for item in list if condition]
+even_numbers = [num for num in num_list if num % 2 == 0]
+print(f"Even numbers (List Comp): {even_numbers}")
+
+# Note: List comprehensions are great for simple operations, 
+# but for complex logic, a traditional for loop is often more readable.
