@@ -187,3 +187,30 @@ dev_profile = user_profile(
 
 print(dev_profile)
 # Output: {'first_name': 'Manuela', 'last_name': 'Acevedo', 'location': 'Bizkaia', 'job': 'Technical Admin', 'bootcamp': 'Full Stack'}
+
+
+# --- Combining all argument types in a single function ---
+
+def greeting(time_of_day, *args, **kwargs):
+    """
+    Greets users and lists their optional tasks for the day.
+    Order: Positional -> *args -> **kwargs
+    """
+    # 1. Processing *args (Tuple of names)
+    names = ' '.join(args)
+    print(f"Hi {names}, I hope you are having a great {time_of_day}.")
+
+    # 2. Processing **kwargs (Dictionary of tasks)
+    if kwargs:
+        print("Your tasks for the day are:")
+        for key, val in kwargs.items():
+            print(f"{key} -> {val}")
+
+# Professional function call with multi-line formatting for readability
+greeting(
+    'Morning',               # Positional
+    'Manuela', 'Acevedo',    # *args
+    task_one='Coding',       # **kwargs
+    task_two='Meal Prep',    # **kwargs
+    task_three='ADE Study'   # **kwargs
+)
