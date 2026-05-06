@@ -103,3 +103,87 @@ def greeting(first, last):
 greeting('Manuela', 'Acevedo')
 
 # Si intentara llamar a full_name() aquí afuera, Python te daría un Error.
+
+
+# --- Handling default arguments ---
+
+def greeting(name='Guest'):
+    """Print a greeting. Defaults to 'Guest' if no name is provided."""
+    print(f"Hi {name}!")
+
+# This will use the default 'Guest'
+greeting() 
+
+# This will override the default with 'Manuela'
+greeting('Manuela')
+
+# BAD PRACTICE: The list will grow every time the function is called
+def some_function(collection=[]):
+    collection.append(1)
+    return collection
+
+print(some_function()) # Output: [1]
+print(some_function()) # Output: [1, 1] <- Memory leak!
+
+
+# --- Using named arguments for clarity ---
+
+def full_name(first, last):
+    """Combine first and last name."""
+    print(f"{first} {last}")
+
+# Positional (Order matters)
+full_name('Kristine', 'Hudgens')
+
+# Named (Order DOES NOT matter)
+full_name(last='Hudgens', first='Kristine')
+
+
+# --- Unpacking dynamic arguments with *args ---
+
+def greeting(time_of_day, *args):
+    """
+    Greets multiple people at a specific time of day.
+    'args' collects all names into a tuple.
+    """
+    # Using 'join' to turn the tuple into a clean string
+    names = ' '.join(args)
+    print(f"Hi {names}, I hope you're having a good {time_of_day}")
+
+# Works with 2 names
+greeting('Morning', 'Tiffany', 'Hudgens')
+
+# Works with 3 names (Middle name included)
+greeting('Afternoon', 'Kristine', 'M', 'Hudgens')
+
+
+# --- Advanced Function Arguments: **kwargs ---
+
+def user_profile(first, last, **kwargs):
+    """
+    Build a dictionary containing everything we know about a user.
+    'first' and 'last' are required, but 'kwargs' captures any additional info.
+    """
+    profile = {
+        'first_name': first,
+        'last_name': last,
+    }
+
+    # Iterate through the dictionary of optional arguments
+    for key, value in kwargs.items():
+        profile[key] = value
+
+    return profile
+
+# Calling the function with named arguments
+# These extra arguments (location, job) are packed into kwargs
+dev_profile = user_profile(
+    'Manuela', 
+    'Acevedo', 
+    location='Bizkaia', 
+    job='Technical Admin', 
+    bootcamp='Full Stack'
+)
+
+print(dev_profile)
+# Output: {'first_name': 'Manuela', 'last_name': 'Acevedo', 'location': 'Bizkaia', 'job': 'Technical Admin', 'bootcamp': 'Full Stack'}
