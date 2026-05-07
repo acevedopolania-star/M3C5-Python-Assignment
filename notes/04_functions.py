@@ -214,3 +214,20 @@ greeting(
     task_two='Meal Prep',    # **kwargs
     task_three='ADE Study'   # **kwargs
 )
+
+
+# --- Working with Lambda Functions ---
+# File: 05_functions.py
+
+# A lambda that takes two arguments and returns a formatted string
+# Syntax: lambda arguments: expression
+full_name = lambda first, last: f"{first} {last}"
+
+def greeting(name):
+    """Simple function to print a welcome message."""
+    print(f"Hi there, {name}!")
+
+# We execute the lambda and pass its result directly to the greeting function
+greeting(full_name('Manuela', 'Acevedo'))
+
+# Output: Hi there, Manuela Acevedo!
